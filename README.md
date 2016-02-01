@@ -8,8 +8,8 @@ Django passcode is a project to enable mobile device registration and verificati
 
 #Installation
 
-  - Include "register" in Installed apps of your project
-  - Include (r'^signup/', include('register.urls')) in project urls.py
+  - Include ``` register ``` in Installed apps of your project
+  - Add  ``` url(r'^signup/', include('register.urls')) ``` urls.py
 
 
 # Usage
@@ -19,9 +19,25 @@ API
 
 1. Register : A POST request to <your_domain>/signup/register/
 
-Post Parameters
-   - mobile 
-   - Device id
+Post parameters
+   - mobile  
+   - Device id   
 
 Response: JSON response 
+```  On success : {'passcode' : '*****', 'code' : 'success' } 
 
+ On Error :  { 'code' : 'Invalid Data' } ```
+
+
+2. Verify: A POST request to <your_domain>/signup/verify/
+
+Post parameters
+     - mobile
+     - Device id
+     - passcode
+
+Response : JSON response
+
+```  On success : { 'code' : 'Success User created', 'token' : '<unique token for user>' }
+
+ On Error :  { 'code' : 'Invalid/Expired passcode' } ```
